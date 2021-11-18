@@ -11,7 +11,10 @@ document.querySelector("#pause").addEventListener("click", VideoPause);
 document.querySelector("#slower").addEventListener("click", VideoSlow);
 document.querySelector("#faster").addEventListener("click", VideoFast);
 document.querySelector("#skip").addEventListener("click", VideoSkip);
-
+document.querySelector("#mute").addEventListener("click", VideoMute);
+document.querySelector("#slider").addEventListener("click", slider);
+document.querySelector("#vintage").addEventListener("click", vintage);
+document.querySelector("#orig").addEventListener("click", origin);
 // {
 // 	console.log("Play Video")
 // });
@@ -42,19 +45,35 @@ function VideoFast(){
 
 function VideoSkip(){
 	console.log("Clicked Skip");
-	console.log("video duration" + video.duration);
-	// var i;
-	// while( video.currentTime+15 < video.ended){
-	// 	video.currentTime = video.currentTime+15;
-	// 	console.log("Current time " + video.currentTime);
-	// 	return;
-	// }
 
-	video.currentTime = video.currentTime+15;
-	if(video.currentTime > video.duration){
+	if(video.currentTime+15> video.duration){
 		video.currentTime = 0;
-		// video.play();
+		video.play();
+	}
+	else{
+		video.currentTime = video.currentTime +15;
 	}
 	console.log("Current time " + video.currentTime);
-	video.play();
+}
+
+function VideoMute(){
+	console.log("Clicked Mute");
+	video.muted = true;
+	
+}
+function slider(){
+	console.log("selected slider")
+	var x = document.getElementById("slider");
+	video.volume = (x.value)/100;
+	console.log("current volume: " + video.volume);
+}
+
+function vintage(){
+	console.log("Vintage Style");
+	video.classList.add("oldSchool");
+}
+
+function origin(){
+	console.log("Original Style");
+	video.classList.remove("oldSchool");
 }
